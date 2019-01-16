@@ -11,6 +11,9 @@ class OrigenStandardSubblocksApplication < Origen::Application
   config.name     = "origen_standard_subblocks"
   config.initials = "OrigenStandardSubblocks"
   config.rc_url   = "git@github.com:Origen-SDK/origen_standard_subblocks.git"
+  config.release_externally = true
+  config.gem_name = "origen_standard_subblocks"
+
 
   # To enable deployment of your documentation to a web server (via the 'origen web'
   # command) fill in these attributes.
