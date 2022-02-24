@@ -5,6 +5,8 @@ module OrigenStandardSubblocks
   class RAM
     include Origen::Model
 
+    attr_reader :sim_config, :ecc
+
     # Create a new <code>OrigenStandardSubblocks::RAM</code> object.
     # @param [Hash] options Initializaton options.
     # @option options [Fixnum] :length The length of the RAM, in bytes.
@@ -12,6 +14,8 @@ module OrigenStandardSubblocks
     # @raise [Origen::Error] When <code>length</code> is not given as an option.
     def initialize(options = {})
       @length = options[:length]
+      @sim_config = options[:sim_config] || {}
+      @ecc = options[:ecc] || false
 
       if @length.nil?
         Origen.app.fail(message: 'RAM subblock requires a :length option to be given!')
@@ -42,6 +46,10 @@ module OrigenStandardSubblocks
     # @return [Fixnum] Indicating the number of RAM addresses available.
     def size
       @length / 4
+    end
+
+    def ecc?
+      @ecc != false
     end
 
     # Returns the end address: i.e., the last usable address (not the length).
